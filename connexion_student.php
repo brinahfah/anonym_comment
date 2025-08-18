@@ -35,8 +35,10 @@ $filiere_id = $filiere_stmt->fetchAll();
 
                 <div class="cote_droit">
                     <label for="code"><strong> Votre code d'identification <div class="point">:</div></strong></label>
-                    <input type="text" name="code_identifiant" required>
-                </div>
+                    <div class="bande">
+                        <input type="text" name="code_identifiant" required>
+                    </div>
+                    </div>
 
             </div>
 
