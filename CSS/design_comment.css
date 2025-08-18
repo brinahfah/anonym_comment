@@ -1,0 +1,434 @@
+body {
+    background-color: rgb(14, 43, 109); /* Bleu foncé */
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Utilise flexbox pour centrer le main-container */
+    justify-content: center; /* Centre horizontalement le main-container */
+    align-items: flex-start; /* Aligne le main-container en haut */
+    min-height: 100vh; /* S'assure que le body prend au moins toute la hauteur de la vue */
+    overflow-x: auto; /* Garde ceci pour éviter le défilement horizontal */
+    position: relative; /* Nécessaire pour le positionnement de l'image flottante sur mobile */
+}
+
+.main-container {
+    background-color: rgb(32, 54, 110); /* Garde le fond bleu foncé */
+    width: 100%;
+    max-width: 800px; /* Limite la largeur du contenu principal sur grand écran */
+    padding: 30px;
+    box-sizing: border-box; /* Inclure padding dans la largeur */
+    display: flex;
+    flex-direction: column; /* Organise les éléments en colonne */
+    align-items: center; /* Centre les éléments enfants (h2, form) */
+    position: relative; /* Pour que l'image flottante ne le chevauche pas sur mobile */
+    z-index: 1; /* S'assure que le contenu est au-dessus de l'image flottante sur grand écran */
+}
+
+h2 {
+    color: white;
+    font-size: 2.5em; /* Taille légèrement augmentée */
+    margin-bottom: 30px;
+    text-align: center;
+    width: 100%; /* S'assure qu'il prend toute la largeur pour le centrage */
+}
+
+.comment-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre les éléments du formulaire */
+}
+
+h3.section-title { /* Pour le h3 "Note :" */
+    color: white;
+    font-size: 1.4em;
+    margin-top: 25px; /* Augmenter l'espace */
+    margin-bottom: 15px;
+    text-align: center;
+    width: 100%;
+}
+
+.divider { /* Style pour la ligne horizontale */
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.3); /* Ligne blanche semi-transparente */
+    width: 100%;
+    margin: 20px 0; /* Espace au-dessus et en dessous de la ligne */
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligne le label à gauche */
+}
+
+.form-group label {
+    color: white;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+
+input[type="date"],
+input[type="text"],
+textarea,
+select {
+    background-color: rgb(247, 106, 13); /* Orange */
+    color: white; /* Couleur du texte par défaut */
+    border: 1px solid rgb(247, 106, 13);
+    border-radius: 5px;
+    padding: 10px 15px;
+    width: calc(100% - 30px); /* Ajuste la largeur pour prendre en compte le padding */
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px; /* Hauteur minimale légèrement augmentée */
+    color: black; /* Texte du commentaire en noir pour meilleure lisibilité */
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22white%22%20d%3D%22M287%2C197.3L159.2%2C69.5c-3.6-3.6-8.2-5.4-13.8-5.4s-10.2%2C1.8-13.8%2C5.4L5.4%2C197.3c-7.2%2C7.2-7.2%2C18.4%2C0%2C25.6c3.6%2C3.6%2C8.2%2C5.4%2C13.8%2C5.4s10.2-1.8%2C13.8-5.4L145.6%2C101.9c3.6-3.6%2C8.2-5.4%2C13.8-5.4s10.2%2C1.8%2C13.8%2C5.4l112%2C112c3.6%2C3.6%2C8.2%2C5.4%2C13.8%2C5.4c5.6%2C0%2C10.2-1.8%2C13.8-5.4C294.2%2C215.7%2C294.2%2C204.5%2C287%2C197.3z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 12px;
+    padding-right: 40px;
+}
+
+.char-count {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9em;
+    margin-top: 5px;
+    align-self: flex-end;
+}
+
+.submit-button {
+    background-color: rgb(247, 106, 13);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px; /* Plus petit pour correspondre au design */
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    margin-top: 30px;
+}
+
+.submit-button:hover {
+    background-color: white;
+    color: rgb(247, 106, 13);
+}
+
+.submit-button:active {
+    background-color: rgb(36, 154, 209); /* Bleu plus clair */
+    color: white;
+}
+
+/* Rating styles */
+.rating-container {
+    display: flex;
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne sur petit écran */
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Espace entre le bloc d'étoiles et "Aucune note" */
+    margin-bottom: 20px;
+    width: 100%; /* Important pour le centrage */
+}
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse; /* Pour que la 5ème étoile soit à droite */
+    justify-content: center; /* Centre les étoiles */
+    gap: 5px; /* Espacement entre chaque étoile */
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    font-size: 2.5rem; /* Taille des étoiles */
+    color: rgba(255, 255, 255, 0.4); /* Couleur par défaut (blanc transparent) */
+    cursor: pointer;
+    transition: color 0.2s;
+    line-height: 1; /* Pour éviter les problèmes d'alignement vertical du caractère étoile */
+}
+
+/* Couleurs des étoiles au survol */
+.rating label:hover,
+.rating label:hover ~ label {
+    color: gold;
+}
+
+/* Couleurs des étoiles lorsqu'un input radio est sélectionné */
+.rating input:checked ~ label {
+    color: gold;
+}
+
+/* Correction pour l'étoile survolée au-dessus d'une étoile cochée */
+.rating input:checked + label:hover,
+.rating input:checked ~ label:hover,
+.rating label:hover ~ input:checked ~ label {
+    color: gold;
+}
+
+/* Style pour "Aucune note" et sa croix */
+.no-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #999; /* Gris */
+    font-size: 1rem;
+    transition: color 0.4s;
+}
+
+.no-rating input {
+    display: none;
+}
+
+.no-rating label {
+    font-size: 2rem; /* Taille de la croix */
+    color: #999; /* Couleur par défaut de la croix */
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.no-rating label:hover {
+    color: crimson; /* Rouge au survol */
+}
+
+.no-rating input:checked + label {
+    color: crimson; /* Rouge quand coché */
+}
+
+.no-rating-text {
+    color: rgba(255, 255, 255, 0.7); /* Texte "Aucune note" en gris clair */
+    font-weight: normal;
+    font-size: 1em;
+    display: none; /* Masqué par défaut, affiché par JS quand coché */
+}
+
+/* Floating Image */
+.floating-image {
+    position: fixed;
+    right: 20px; /* Espace à droite */
+    bottom: 20px; /* Espace en bas */
+    z-index: 10; /* Assure qu'elle est au-dessus du reste */
+    pointer-events: none; /* Permet les clics à travers */
+    transition: transform 0.3s ease-out; /* Pour l'effet JavaScript */
+}
+
+.floating-image img {
+    width: 250px; /* Taille de l'image sur grand écran */
+    height: auto;
+    object-fit: contain;
+    opacity: 0.7; /* Légère transparence */
+    display: block; /* Élimine les espaces blancs sous l'image */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+
+    body{
+         background-color: rgb(14, 43, 109);
+    }
+
+    .main-container {
+        padding: 20px; /* Padding réduit sur mobile */
+    }
+
+    h2 {
+        font-size: 2em; /* Taille de titre ajustée */
+        margin-bottom: 20px;
+    }
+
+    .section-title {
+        font-size: 1.2em;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    input[type="date"],
+    textarea,
+    select {
+        width: 100%; /* Prennent toute la largeur sur mobile */
+        padding: 8px 10px;
+        font-size: 0.95em;
+    }
+
+    textarea {
+        min-height: 100px; /* Hauteur minimale ajustée */
+    }
+
+    .rating-container {
+        flex-direction: column; /* Empile les étoiles et "Aucune note" */
+        gap: 10px; /* Réduit l'espace entre eux */
+        margin-bottom: 15px;
+    }
+
+    .rating {
+        font-size: 2em; /* Taille des étoiles réduite sur mobile */
+        gap: 3px; /* Espacement réduit entre les étoiles */
+    }
+
+    .rating label {
+        font-size: 2em; /* Taille des labels des étoiles réduite */
+    }
+
+    .no-rating label {
+        font-size: 1.8em; /* Taille de la croix réduite */
+    }
+
+    .submit-button {
+        padding: 10px 20px;
+        font-size: 1em;
+        margin-top: 20px;
+        width: 100%; /* Le bouton prend toute la largeur */
+        max-width: 250px; /* Limite la largeur max */
+    }
+
+    .char-count {
+        font-size: 0.8em;
+    }
+
+    .floating-image {
+        position: static; /* Retire le positionnement fixe sur mobile */
+        right: 20px; /* Espace à droite */
+        bottom: 20px; 
+        width: 100%; /* Prend toute la largeur */
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 30px; /* Ajoute un espace après le formulaire */
+        margin-bottom: 30px;
+    }
+
+    .floating-image img {
+        width: 180px; /* Taille de l'image réduite sur mobile */
+        opacity: 1; /* Pas de transparence sur mobile pour meilleure visibilité */
+    }
+}
+
+/* Téléphones très petits (ex. iPhone SE, Android compact) */
+@media screen and (max-width: 400px) {
+
+  body {
+    background-color: rgb(14, 43, 109); /* Bleu foncé */
+   
+  }
+
+  h2 {
+    font-size: 1.3em;
+  }
+
+  .submit-button {
+    font-size: 1em;
+    padding: 10px;
+  }
+
+  .rating label, .no-rating label {
+    font-size: 1.4em;
+  }
+
+  .floating-image img {
+    width: 120px;
+  }
+}
+
+/* Mobiles standards (ex. Galaxy, iPhone normaux) */
+@media screen and (max-width: 576px) {
+
+    body {
+    background-color: rgb(14, 43, 109); /* Bleu foncé */
+   
+    }
+
+  .main-container {
+    padding: 10px;
+  }
+
+  .section-title {
+    font-size: 1.1em;
+  }
+
+  input, textarea, select {
+    font-size: 0.9em;
+    padding: 8px;
+  }
+
+  .submit-button {
+    max-width: 100%;
+  }
+
+  .floating-image img {
+    width: 150px;
+  }
+}
+
+
+/* Tablettes en paysage / petits laptops */
+@media screen and (max-width: 992px) {
+
+    body {
+    background-color: rgb(14, 43, 109); /* Bleu foncé */
+   
+    }
+
+  .main-container {
+    padding: 20px 30px;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  .submit-button {
+    font-size: 1.1em;
+  }
+}
+
+@media (max-width: 768px) {
+
+    body {
+    background-color: rgb(14, 43, 109); /* Bleu foncé */
+   
+    }
+
+  .floating-image {
+    order: 1;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .main-container {
+    order: 0;
+  }
+}
+
+/* Si tu veux t'assurer que .floating-image passe APRÈS le contenu */
+@media (max-width: 768px) {
+  .responsive-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .floating-image {
+    position: static !important;
+    width: auto;
+    margin-top: 20px;
+  }
+}
+
+

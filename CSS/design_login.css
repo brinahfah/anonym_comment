@@ -1,0 +1,97 @@
+body{
+    background-color: rgb(25, 45, 90);
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+h2{
+    color: rgb(247, 106, 13);
+    border: 5px solid black;
+    border-radius: 18px;
+    background-color: black;
+    animation: flotter 3s infinite;
+    font-size: 2rem;
+}
+
+@keyframes flotter {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    font-size: 25px;
+    position: relative;
+    top: 90px;
+    border: 30px solid t;
+}
+
+.formulaire {
+    background-color:transparent;
+    padding: 20px;
+    border: 20px solid rgb(38, 35, 184);
+    border-radius: 10px;
+    font-size: 2.5rem;
+    height: 50%;
+    width: 50%;
+    
+}
+
+input{
+    background-color: rgb(247, 106, 13);
+    font-size: 20px;
+    width: 80%;
+    
+}
+
+::placeholder{
+    color: black;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.formulaire {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05); /* effet légèrement transparent */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  backdrop-filter: blur(10px); /* effet flou comme du verre */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  padding: 30px;
+  color: white;
+  overflow: hidden;
+}
+
+/* REFLET animé */
+.formulaire::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.3), transparent 70%);
+  transform: rotate(25deg);
+  animation: reflet-anim 3s infinite;
+  pointer-events: none;
+}
+
+@keyframes formulaire-anim {
+  0% {
+    transform: translate(-100%, -100%) rotate(25deg);
+  }
+  100% {
+    transform: translate(100%, 100%) rotate(25deg);
+  }
+}
+
+button{
+    background-color: rgb(247, 106, 13);
+    color: black;
+}

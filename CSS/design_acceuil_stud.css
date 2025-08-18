@@ -1,0 +1,172 @@
+body {
+    background-color: rgb(25, 45, 90);
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0; /* Toujours utile pour éviter les scrolls involontaires */
+}
+
+.acceuil {
+    font-family: Georgia, serif;
+}
+
+h1 {
+    color: rgb(252, 251, 250);
+}
+
+.i_color {
+    color: rgb(247, 106, 13);
+    display: inline;
+}
+
+.middle_part {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 50px;
+    position: relative;
+    top: 90px;
+    left: 0;
+}
+
+.contact {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: rgb(75, 106, 180);
+    border: 12px solid rgb(75, 106, 180);
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    display: flex;
+    flex: 1;
+    justify-content: space-evenly;
+    padding: 10px 0; /* ajout léger padding */
+    box-sizing: border-box;
+}
+
+button {
+    background-color: rgb(247, 106, 13);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+    font-size: 35px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    padding: 12px 20px;
+    border: none;
+}
+
+button:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(247, 106, 13);
+}
+
+button:active {
+    background-color: rgb(36, 154, 209);
+    color: white;
+}
+
+footer {
+    position: relative;
+    top: 280px;
+    left: 4px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(8, 20, 46);
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* === Media Queries pour écrans ≤ 768px (tablettes et mobiles) === */
+@media screen and (max-width: 768px) {
+
+    body {
+        background-color: rgb(25, 45, 90);
+        height: auto; /* hauteur flexible */
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .contact {
+        background-color: rgb(75, 106, 180);
+        border: 12px solid rgb(75, 106, 180);
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px; /* espace entre éléments */
+        padding: 15px 0;
+        box-sizing: border-box;
+    }
+
+    .middle_part {
+        position: relative;
+        top: 20px; /* un seul top */
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px; /* réduire taille texte pour mobiles */
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+
+    button {
+        font-size: 28px;
+        width: 90%;
+        max-width: 300px;
+        padding: 12px 0;
+    }
+
+    button:hover {
+        background-color: rgb(255, 255, 255);
+        color: rgb(247, 106, 13);
+    }
+
+    button:active {
+        background-color: rgb(36, 154, 209);
+        color: white;
+    }
+
+    footer {
+        position: relative;
+        top: 210px;
+        left: 0;
+        right: 0;
+        color: rgb(255, 255, 255);
+        background-color: rgb(8, 20, 46);
+        height: auto;
+        padding: 15px;
+        box-sizing: border-box;
+        text-align: center;
+    }
+}
+
+/* === Media Queries pour très petits écrans (ex: mobiles < 400px) === */
+@media screen and (max-width: 400px) {
+    .middle_part {
+        font-size: 24px;
+        padding: 0 10px;
+    }
+
+    button {
+        font-size: 25px;
+        width: 100%;
+        max-width: none;
+
+    }
+
+    .contact {
+        padding: 10px 5px;
+    }
+}

@@ -1,0 +1,68 @@
+body {
+    background-color: rgb(25, 45, 90);
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: Georgia, serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: rgb(252, 251, 250);
+    text-align: center;
+}
+
+.i_color {
+    color: rgb(247, 106, 13);
+    display: inline;
+}
+
+.welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    font-size: 3vw; /* plus fluide */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: rgb(247, 106, 13);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+    font-size: 2vw;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    border: none;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(247, 106, 13);
+}
+
+button:active {
+    background-color: rgb(36, 154, 209);
+    color: white;
+}
+
+/* ✅ Media query pour écrans <= 768px */
+@media screen and (max-width: 768px) {
+    .welcome {
+        font-size: 6vw;
+        padding: 40px 10px;
+    }
+
+    button {
+        font-size: 5vw;
+        width: 90%;
+        max-width: 300px;
+    }
+}
