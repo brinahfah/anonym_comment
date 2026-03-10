@@ -1,49 +1,26 @@
 <?php
-//Informations de connexion Supabase
-$host = 'db.orlwybmkqjqxoslrrwbq.supabase.co';
-$port = '5432'; // Port par défaut pour PostgreSQL
-$database = 'postgres';
-$user ='postgres' ;  // Nom d'utilisateur
-$password = 'bribri34#OP45';             // Mot de passe
 
+require_once __DIR__ . '/../vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
 
+try {
 
-try{
-    //DSN (Data Source Name) pour PostgreSQL
-    $dsn= "pgsql:host=$host;port=$port;dbname=$database";
+    $dsn = "pgsql:host={$_ENV['DB_HOST']};port={$_ENV['DB_PORT']};dbname={$_ENV['DB_NAME']};sslmode=require";
 
-    //Création d'une nouvelle instance de PDO
-    $pdo = new PDO($dsn,$user,$password);
+    $pdo = new PDO(
+        $dsn,
+        $_ENV['DB_USER'],
+        $_ENV['DB_PASSWORD']
+    );
 
-    //Définir le mode d'erreur de PDO sur Exception
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-   
-}
-catch (PDOException $e){
-    //En cas d'erreu, affiche un message
-    echo "Erreur de connexion : " . $e->getMessage();
-}
 
-//Charger les informations de configurations
-  $config = require_once 'config.php';
+    return $pdo;
 
-try{
-    //DSN pour PostgreSQL
-    $dsn = "pgsql:host={$config['host']};port={$config['port']};dbname={$config['dbname']}";
+} catch (PDOException $e) {
 
-    //Création de la connexion PDO
-    $pdo = new PDO($dsn,$config['user'], $config['password']);
-
-    //Configuration du mode d'erreur de PDO
-    $pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-}
-catch (PDOException $e){
-    //Gestion des erreurs de connexion
     die("Erreur de connexion : " . $e->getMessage());
+
 }
-
-
-?>

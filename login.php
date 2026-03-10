@@ -9,36 +9,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email_saisi = $_POST['email']; 
     $password_saisi = $_POST['mot_de_passe_hache'] ?? ''; 
 
-    // 1. Préparer la requête pour récupérer l'enregistrement de l'administrateur par son e-mail
-    // Nous avons seulement besoin de sélectionner l'enregistrement par e-mail pour obtenir le hachage stocké.
-    
+    // Préparer la requête pour récupérer l'administrateur
     $stmt = $pdo->prepare("SELECT * FROM admins WHERE email = :email");
     $stmt->bindParam(':email', $email_saisi);
-    
-    
     $stmt->execute();
-    $admin = $stmt->fetch(PDO::FETCH_ASSOC); // Récupérer les données de l'utilisateur sous forme de tableau associatif
+    $admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // 2. Vérifier si un administrateur avec cet e-mail a été trouvé ET si le mot de passe correspond
+    $ip = $_SERVER['REMOTE_ADDR'];
+
+    // Vérifier si un administrateur existe
     if ($admin) {
         
-        // Utiliser password_verify() pour comparer le mot de passe en texte clair du formulaire
-        // avec le mot de passe haché stocké dans la base de données ($admin['mot_de_passe_hache']).
-        
+        // Vérification du mot de passe
         if (password_verify($password_saisi, $admin['mot_de_passe_hache'])) {
+
+            // Journalisation succès
+            $stmt = $pdo->prepare("INSERT INTO log_connexions(email, ip_adresse, statut) VALUES (?, ?, 'success')");
+            $stmt->execute([$email_saisi, $ip]);
+
             $_SESSION['admin'] = $admin['email'];
             header('Location: admin.php'); 
             exit();
+
         } else {
-            // Le mot de passe ne correspond pas
+
+            // Journalisation échec
+            $stmt = $pdo->prepare("INSERT INTO log_connexions(email, ip_adresse, statut) VALUES (?, ?, 'failed')");
+            $stmt->execute([$email_saisi, $ip]);
+
             $erreur = 'Identifiant ou mot de passe incorrect.';
-           header('Location: erreur.php');
-           exit(); 
+            header('Location: erreur.php');
+            exit(); 
         }
+
     } else {
-        // Aucun administrateur trouvé avec l'e-mail fourni
+
+        // Journalisation échec (email inconnu)
+        $stmt = $pdo->prepare("INSERT INTO log_connexions(email, ip_adresse, statut) VALUES (?, ?, 'failed')");
+        $stmt->execute([$email_saisi, $ip]);
+
         $erreur = 'Identifiant ou mot de passe incorrect.';
-        header('Location: erreur.php ');
+        header('Location: erreur.php');
         exit();
     }   
 }
@@ -71,7 +82,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </div>
     
-
 </div>
    
 </body>
