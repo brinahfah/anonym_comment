@@ -5,7 +5,7 @@ class DatabaseTest extends TestCase
 {
     public function testDatabaseConnection()
     {
-        $pdo = require __DIR__ . '/../BDD/db_connexion.php';
+        $pdo = require __DIR__ . '../../Modele/db_connexion.php';
 
         $this->assertInstanceOf(PDO::class, $pdo);
 

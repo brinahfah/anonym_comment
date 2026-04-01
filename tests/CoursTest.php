@@ -8,7 +8,7 @@ class CoursTest extends TestCase
     protected function setUp(): void
     {
         // Connexion à la base
-        $this->pdo = require __DIR__ . '/../BDD/db_connexion.php';
+        $this->pdo = require __DIR__ . '../../Modele/db_connexion.php';
     }
 
     public function testAjouterCours()

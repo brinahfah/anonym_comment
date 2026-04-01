@@ -8,7 +8,7 @@ class CommentTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->pdo = require __DIR__ . '/../BDD/db_connexion.php';
+        $this->pdo = require __DIR__ . '../../Modele/db_connexion.php';
         // Crée un cours pour le commentaire
         $stmt = $this->pdo->prepare("INSERT INTO cours (nom_du_cour, id_filiere) VALUES (?, ?)");
         $stmt->execute(["Cours Commentaire BTS", 1]);
