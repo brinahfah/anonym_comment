@@ -1,5 +1,5 @@
 <?php
-require 'BDD/db_connexion.php';
+require ("../../Modele/db_connexion.php");
 session_start();
 
 // Récupérer toutes les filières
@@ -33,7 +33,7 @@ foreach ($cours as $c) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gérer les cours</title>
-<link rel="stylesheet" href="CSS/design_cours.css">
+<link rel="stylesheet" href="../../Vue/CSS/admin_design/design_cours.css">
 </head>
 <body>
 
@@ -42,7 +42,7 @@ foreach ($cours as $c) {
 
     <!-- Formulaire d'ajout -->
     <div class="form-section">
-        <form method="post" action="ajouter_cours.php" class="add-course-form">
+        <form method="post" action="../admin_part/ajouter_cours.php" class="add-course-form">
             <select name="id_filiere" required>
                 <option value="" disabled selected>Choisir une filière</option>
                 <?php foreach ($filieres as $f): ?>
@@ -68,7 +68,7 @@ foreach ($cours as $c) {
                         <?php foreach ($cours_liste as $c): ?>
                             <div class="cours-item">
                                 <span class="course-name"><?= htmlspecialchars($c['nom_du_cour']) ?></span>
-                                <a href="supprimer_cours.php?id_cour=<?= $c['id_cour'] ?>" 
+                                <a href="../admin_part/supprimer_cours.php?id_cour=<?= $c['id_cour'] ?>" 
                                    class="delete-link" 
                                    onclick="return confirm('Voulez-vous vraiment supprimer ce cours ?');">
                                    Supprimer
@@ -83,7 +83,7 @@ foreach ($cours as $c) {
         <?php endforeach; ?>
 
         <br>
-        <a href="admin.php" class="back-link">Voir les avis</a>
+        <a href="../admin_part/vue_comment.php" class="back-link">Voir les avis</a>
     </div>
 </main>
 

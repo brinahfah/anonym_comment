@@ -1,5 +1,5 @@
 <?php
-require 'BDD/db_connexion.php';
+require ("../../Modele/db_connexion.php");
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -19,5 +19,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['message'] = "Requête invalide.";
 }
 
-header("Location: cours.php");
+header("Location: ../admin_part/gerer_cours.php");
 exit;

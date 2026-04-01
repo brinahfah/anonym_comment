@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="CSS/design_erreur.css">
+     <link rel="stylesheet" href="../../Vue/CSS/design_erreur.css">
     <title>Document</title>
 </head>
 <body>
     
     <div class="container">
         <?php
-            require 'BDD/db_connexion.php';
+            require ("../../Modele/db_connexion.php");
             session_start();
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -37,7 +37,7 @@
                         $_SESSION['id_filiere'] = $filiere_id;
 
                     // ✅ Redirection vers le formulaire de commentaire
-                        header('Location: comment.php');
+                        header('Location: ../../Controller/etudiant_part/comment.php');
                         exit;
                     } else {
                         echo "<p>❌ Code incorrect ou filière incorrecte.</p>";

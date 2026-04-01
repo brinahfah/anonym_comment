@@ -1,10 +1,10 @@
 <?php
 session_start();
-require 'BDD/db_connexion.php';
+require ("../../Modele/db_connexion.php");
 
 // Vérifier si l'utilisateur est connecté 
 if (!isset($_SESSION['admin'])) {
-    header('Location: login.php');
+    header('Location: ../Controller/admin_part/login.php');
     exit();
 }
 
@@ -19,9 +19,15 @@ $sql = "SELECT cm.id_comment, cm.note, cm.commentaire, c.nom_du_cour, f.nom AS n
         JOIN filieres f ON c.id_filiere = f.id_filiere
         WHERE 1=1";
 
+$params = [];
+
 if ($note) {
-    $sql .= " AND cm.note = $note";
+    $sql .= " AND cm.note = ?";
+    $params[] = $note;
 }
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
 if ($filiere) {
     $sql .= " AND f.nom LIKE " . $pdo->quote("%$filiere%");
 }
@@ -47,7 +53,7 @@ $topCours = $pdo->query($sqlTop)->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/design_admin.css">
+    <link rel="stylesheet" href="../../Vue/CSS/admin_design/design_admin.css">
     <title>Espace admin</title>
 </head>
 <body>
@@ -55,8 +61,8 @@ $topCours = $pdo->query($sqlTop)->fetchAll();
 <div class="reflet">
     <h2>Commentaires reçus</h2>
 
-    <a href="cours.php">Gérer les cours</a>
-    <a href="logout.php">Déconnexion</a>
+    <a href="../admin_part/gerer_cours.php">Gérer les cours</a>
+    <a href="../admin_part/logout.php">Déconnexion</a>
     <hr>
 
     <!-- Formulaire de filtre -->
@@ -69,7 +75,7 @@ $topCours = $pdo->query($sqlTop)->fetchAll();
         <br><br>
         <button type="submit">Filtrer</button>
         <br><br>
-        <a href="admin.php" style="margin-left:10px;">Réinitialiser</a>
+        <a href="../admin_part/vue_comment.php" style="margin-left:10px;">Réinitialiser</a>
     </form>
 
     <?php if (count($commentaire)): ?>
@@ -93,7 +99,7 @@ $topCours = $pdo->query($sqlTop)->fetchAll();
                         <td><?= htmlspecialchars($c['nom']); ?></td>
                         <td><?= $c['posted_on']; ?></td>
                         <td>
-                            <form action="delete.php" method="post" style="display:inline;">
+                            <form action="../admin_part/delete_comment.php" method="post" style="display:inline;">
                                 <input type="hidden" name="id_comment" value="<?= $c['id_comment']; ?>">
                                 <button type="submit" onclick="return confirm('Supprimer ce commentaire ?');">Supprimer</button>
                             </form>

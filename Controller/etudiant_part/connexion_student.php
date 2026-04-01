@@ -1,5 +1,5 @@
 <?php
-require 'BDD/db_connexion.php';
+require ("../../Modele/db_connexion.php");
 
 session_start();
 
@@ -12,7 +12,7 @@ $filiere_id = $filiere_stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/design_connex_stud.css">
+    <link rel="stylesheet" href="../../Vue/CSS/etudiant_design/design_connex_stud.css">
     <title>Connexion etudiant</title>
 </head>
 <body>
@@ -21,7 +21,7 @@ $filiere_id = $filiere_stmt->fetchAll();
 
         <h2>Connexion Etudiant</h2>
 
-        <form method="post" action="verifier_code.php">
+        <form method="post" action="../../Controller/etudiant_part/verifier_code.php">
 
             <div class="bloc_milieu">
                 <div class="cote_gauche">
@@ -50,7 +50,7 @@ $filiere_id = $filiere_stmt->fetchAll();
     <hr>
  
     <footer>
-         <img src="image/ChatGPT Image 23 juil. 2025, 15_22_27.png" alt="Image de pied de page">
+         <img src="../../Vue/assets/image/ChatGPT Image 23 juil. 2025, 15_22_27.png" alt="Image de pied de page">
     </footer>
 
 </body>

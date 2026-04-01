@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/design_succes.css">
+    <link rel="stylesheet" href="../../Vue/CSS/etudiant_design/design_succes.css">
     <title>Document</title>
 </head>
 <body>
@@ -11,7 +11,7 @@
     <div class="container">
     
             <?php
-        require 'BDD/db_connexion.php';
+        require ("../../Modele/db_connexion.php");
         session_start();
 
         $id_study = $_SESSION['id_study'] ?? null;
@@ -27,7 +27,7 @@
 
 
             echo "<p>✅ Commentaire envoyé avec succès.</p>";
-            echo '<br><a href="comment.php">Retour</a>';
+            echo '<br><a href="../../Controller/etudiant_part/comment.php">Retour</a>';
         } else {
             echo "Erreur lors de l'envoi du commentaire.";
         }

@@ -1,5 +1,5 @@
 <?php
-require 'BDD/db_connexion.php';
+require ("../../Modele/db_connexion.php");
 session_start();
 
 if (isset($_GET['id_cour'])) {
@@ -8,9 +8,9 @@ if (isset($_GET['id_cour'])) {
     $stmt = $pdo->prepare("DELETE FROM cours WHERE id_cour = ?");
     $stmt->execute([$id_cour]);
 
-    header('Location: cours.php');
+    header('Location: ../admin_part/gerer_cours.php');
     exit;
 } else {
-    header('Location: cours.php');
+    header('Location: ../admin_part/gerer_cours.php');
     exit;
 }

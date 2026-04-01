@@ -2,7 +2,7 @@
 
 session_start();
 
-require 'BDD/db_connexion.php'; 
+require ("../../Modele/db_connexion.php"); 
 
 $erreur = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$email_saisi, $ip]);
 
             $_SESSION['admin'] = $admin['email'];
-            header('Location: admin.php'); 
+            header('Location: ../admin_part/vue_comment.php'); 
             exit();
 
         } else {
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$email_saisi, $ip]);
 
             $erreur = 'Identifiant ou mot de passe incorrect.';
-            header('Location: erreur.php');
+            header('Location: ../erreur.php');
             exit(); 
         }
 
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$email_saisi, $ip]);
 
         $erreur = 'Identifiant ou mot de passe incorrect.';
-        header('Location: erreur.php');
+        header('Location: ../erreur.php');
         exit();
     }   
 }
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/design_login.css">
+    <link rel="stylesheet" href="../../Vue/CSS/admin_design/design_login.css">
     <title>Connexion admin</title>
 </head>
 <body>

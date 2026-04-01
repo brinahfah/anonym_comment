@@ -1,5 +1,5 @@
 <?php
-require_once "../BDD/db_connexion.php";
+require_once ("../../Modele/db_connexion.php");
 
 // Récupérer les logs
 $stmt = $pdo->query("SELECT * FROM log_connexions ORDER BY date_connexion DESC");

@@ -8,7 +8,7 @@ session_start();
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Erreur de connexion</title>
-<link rel="stylesheet" href="CSS/design_erreur_log.css">
+<link rel="stylesheet" href="../Vue/CSS/admin_design/design_erreur_log.css">
 </head>
 
 <body>
@@ -27,7 +27,7 @@ session_start();
         Veuillez vérifier vos identifiants et réessayer.
         </p>
 
-        <a href="login.php" class="btn-retour">
+        <a href="../Controller/admin_part/login.php" class="btn-retour">
         Retour à la connexion
         </a>
 

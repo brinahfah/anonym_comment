@@ -1,5 +1,5 @@
 <?php
-require 'BDD/db_connexion.php';
+require ("../../Modele/db_connexion.php");
 session_start();
 
 if (isset($_POST['nom_du_cour'], $_POST['id_filiere'])) {
@@ -10,6 +10,6 @@ if (isset($_POST['nom_du_cour'], $_POST['id_filiere'])) {
     $stmt->execute([$nom, $id_filiere]);
 }
 
-header("Location: cours.php"); // Redirection vers la page principale
+header("Location: ../admin_part/gerer_cours.php"); // Redirection vers la page principale
 exit;
 ?>

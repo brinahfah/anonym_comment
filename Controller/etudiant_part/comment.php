@@ -1,5 +1,5 @@
 <?php
-require 'BDD/db_connexion.php';
+require ("../../Modele/db_connexion.php");
 session_start();
 
 $filiere_id = $_SESSION['id_filiere'] ?? null;
@@ -18,7 +18,7 @@ $cours = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/design_comment.css">
+    <link rel="stylesheet" href="../../Vue/CSS/etudiant_design/design_comment.css">
     <title>Laisser un commentaire</title>
 </head>
 <body>
@@ -26,7 +26,7 @@ $cours = $stmt->fetchAll();
     <main class="main-container">
         <h2>Laisser un commentaire</h2>
 
-        <form method="post" action="insert.php" class="comment-form">
+        <form method="post" action="../../Controller/etudiant_part/insert.php" class="comment-form">
             <div class="form-group">
                 <label for="id_cour">Cours :</label>
                 <select name="id_cour" id="id_cour" required>
@@ -63,7 +63,7 @@ $cours = $stmt->fetchAll();
     </main>
 
     <div class="floating-image">
-        <img src="image/ChatGPT Image 23 juil. 2025, 16_18_24.png" alt="Commentaires / Avis">
+        <img src="../../Vue/assets/image/ChatGPT Image 23 juil. 2025, 16_18_24.png" alt="Commentaires / Avis">
     </div>
 
     <script>
