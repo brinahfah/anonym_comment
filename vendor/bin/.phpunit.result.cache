@@ -1,0 +1,1 @@
+{"version":2,"defects":[],"times":{"CommentTest::testAjouterCommentaire":0.223,"CoursDeleteTest::testSupprimerCours":0.114,"DatabaseTest::testDatabaseConnection":0.274,"JournalTest::testJournalInsertion":0.073,"UserTest::testAdminInsertion":0.117}}
